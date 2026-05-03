@@ -1,0 +1,1 @@
+ALTER TABLE llx_furs_log ADD INDEX idx_furs_log_fk_facture (fk_facture);
