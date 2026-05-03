@@ -13,9 +13,11 @@ if (! $res && file_exists("../../../../main.inc.php")) $res=@include '../../../.
 if (! $res && file_exists("../../../../../main.inc.php")) $res=@include '../../../../../main.inc.php';
 if (! $res && preg_match('/\/custom\//', dirname($_SERVER["PHP_SELF"]))) $res=@include '../../../../main.inc.php';
 if (! $res) die("Include of main fails");
+
 require_once DOL_DOCUMENT_ROOT . '/core/lib/admin.lib.php';
 
-$langs->loadLangs(array("admin", "furs@furs"));
+$langs->load("admin");
+$langs->load("furs@furs");
 
 if (!$user->admin) {
     accessforbidden();
@@ -44,7 +46,7 @@ if ($action == 'update') {
 
     // Handle File Upload
     if (!empty($_FILES['furs_cert']['name'])) {
-        $upload_dir = $conf->admin->dir_temp . '/furs';
+        $upload_dir = DOL_DATA_ROOT . '/furs';
         if (!dol_is_dir($upload_dir)) {
             dol_mkdir($upload_dir);
         }

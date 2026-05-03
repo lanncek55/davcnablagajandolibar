@@ -26,7 +26,7 @@ class FursAPI
     public function validateInvoice($object)
     {
         // 1. Get P12 certificate and password
-        $p12_path = $this->conf->admin->dir_temp . '/furs/furs_cert.p12';
+        $p12_path = DOL_DATA_ROOT . '/furs/furs_cert.p12';
         $p12_password = !empty($this->conf->global->FURS_P12_PASSWORD) ? $this->conf->global->FURS_P12_PASSWORD : '';
 
         if (!file_exists($p12_path)) {
