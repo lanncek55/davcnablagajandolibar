@@ -59,7 +59,6 @@ class modFurs extends DolibarrModules
     public function init($options = '')
     {
         $sql = array();
-        $result = $this->load_tables();
         return $this->_init($sql, $options);
     }
 }
