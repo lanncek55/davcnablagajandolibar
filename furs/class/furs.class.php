@@ -195,6 +195,11 @@ class FursAPI
 
     private function sendSoapRequest($endpoint, $xml, $p12_path, $p12_password)
     {
+        if (!function_exists('curl_init')) {
+            $this->error = "PHP cURL razširitev (extension) ni nameščena. Modul ne more komunicirati s FURS.";
+            return false;
+        }
+
         $ch = curl_init($endpoint);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
