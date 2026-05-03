@@ -5,7 +5,14 @@
  * \brief Setup page for FURS module
  */
 
-require '../../main.inc.php';
+$res=0;
+if (! $res && file_exists("../main.inc.php")) $res=@include '../main.inc.php';
+if (! $res && file_exists("../../main.inc.php")) $res=@include '../../main.inc.php';
+if (! $res && file_exists("../../../main.inc.php")) $res=@include '../../../main.inc.php';
+if (! $res && file_exists("../../../../main.inc.php")) $res=@include '../../../../main.inc.php';
+if (! $res && file_exists("../../../../../main.inc.php")) $res=@include '../../../../../main.inc.php';
+if (! $res && preg_match('/\/custom\//', dirname($_SERVER["PHP_SELF"]))) $res=@include '../../../../main.inc.php';
+if (! $res) die("Include of main fails");
 require_once DOL_DOCUMENT_ROOT . '/core/lib/admin.lib.php';
 
 $langs->loadLangs(array("admin", "furs@furs"));
